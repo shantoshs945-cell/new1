@@ -151,6 +151,31 @@
       .footer-copy { text-align: right; font-size: 10px; color: var(--muted-foreground); }
       .footer-copy p { font-size: 14px; color: var(--foreground); margin: 0 0 9px; }
 
+      .booking-section { padding: 18px 0 26px; }
+      .booking-card {
+        display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 28px;
+        background: linear-gradient(135deg, var(--secondary), var(--card));
+        border: 1px solid var(--border); border-radius: 20px; padding: clamp(24px, 4vw, 48px);
+        box-shadow: var(--shadow-soft);
+      }
+      .booking-card h2 { font-size: clamp(30px, 3vw, 48px); line-height: 1.1; font-weight: 700; }
+      .booking-card p { margin: 14px 0 0; font-size: 14px; line-height: 1.8; color: var(--muted-foreground); max-width: 560px; }
+      .booking-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+      .booking-meta span {
+        display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; border-radius: 999px;
+        background: var(--card); border: 1px solid var(--border); font-size: 12px; color: var(--foreground);
+      }
+      .booking-meta svg { width: 15px; height: 15px; color: var(--primary); }
+      .booking-form {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 14px; background: var(--card); border: 1px solid var(--border);
+        border-radius: 16px; padding: 18px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+      }
+      .booking-form label { display: grid; gap: 7px; font-size: 11px; color: var(--muted-foreground); }
+      .booking-form input { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: var(--background); color: var(--foreground); font-size: 13px; outline: none; }
+      .booking-form input:focus { border-color: var(--primary); }
+      .booking-form .wide { grid-column: 1 / -1; }
+      .booking-form .btn { width: 100%; }
+
       dialog { border: none; padding: 0; background: transparent; color: inherit; }
       dialog::backdrop { background: var(--overlay); backdrop-filter: blur(4px); }
       .travel-dialog { position: relative; width: min(512px, calc(100% - 32px)); max-height: 90dvh; overflow-y: auto; background: var(--background); border: 1px solid var(--border); border-radius: 8px; padding: 30px; box-shadow: var(--shadow-elevated); }
@@ -836,8 +861,43 @@
       </div>
     </main>
 
-    <footer class="site-footer page-width">
-      <div class="brand">
+    <section class="booking-section page-width reveal" id="booking">
+      <div class="booking-card">
+        <div>
+          <span class="eyebrow">BOOK YOUR RIDE</span>
+          <h2>Ready for a smooth journey?</h2>
+          <p>From Tirumala darshan trips to family outings and airport transfers, we make every ride comfortable, punctual, and stress-free.</p>
+          <div class="booking-meta">
+            <span><svg class="lucide lucide-map-pin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" /></svg> Tirupati · Tirumala</span>
+            <span><svg class="lucide lucide-clock" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg> 24/7 support</span>
+          </div>
+        </div>
+
+        <form class="booking-form" onsubmit="event.preventDefault(); document.getElementById('booking-dialog').showModal();">
+          <label>
+            Pickup
+            <input type="text" value="Tirupati" aria-label="Pickup location" />
+          </label>
+          <label>
+            Destination
+            <input type="text" value="Tirumala" aria-label="Destination" />
+          </label>
+          <label>
+            Travel date
+            <input type="date" aria-label="Travel date" />
+          </label>
+          <label>
+            Phone
+            <input type="tel" value="+91 " aria-label="Phone number" />
+          </label>
+          <div class="wide">
+            <button class="btn btn-default" type="submit">Book now</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="site-footer page-width">      <div class="brand">
         <span class="brand-icon"><svg
   class="lucide lucide-car-front"
   xmlns="http://www.w3.org/2000/svg"
